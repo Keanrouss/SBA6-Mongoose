@@ -9,7 +9,7 @@ const PORT= process.env.PORT
 
 
 // const PORT = 3000
-await mongoose.connect(process.env.MONGO_URL) //added after adding the env isolation method.
+mongoose.connect(process.env.MONGO_URL) //added after adding the env isolation method.
 console.log("connected")
 //middleware to read JSON
 app.use (express.json());
