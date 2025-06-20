@@ -7,7 +7,7 @@ const app = express()
 import 'dotenv/config'
 const PORT= process.env.PORT
 
-//const URL = await mongoose.connect('mongodb+srv://Ury:2021@clusterlearning.bfjwlt6.mongodb.net/Mycats?retryWrites=true&w=majority&appName=ClusterLearning')
+
 // const PORT = 3000
 await mongoose.connect(process.env.MONGO_URL) //added after adding the env isolation method.
 console.log("connected")
