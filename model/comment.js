@@ -1,27 +1,21 @@
 import mongoose from 'mongoose'
 const commentSchema = new mongoose.Schema({
 
-    foodname: {
-        type: String,
-        required : true,
-    },
-    username: {
-        type : String,
-        required : true,
-    },
-    email :{
-        type : String,
+    menuId: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
-    comment :{
+    comment: {
         type: String,
         required: true,
-        minLength: 25,
+        minLength: 10,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
+    rating: {
+        type: Number,
+        required: true,
+        minimum: 1,
+        maximum: 5,
     },
-
-})
- export default mongoose.model('review', commentSchema)
+    userId: { type: mongoose.Schema.Types.ObjectId, required: true },
+}, { timestamps: { createdAt: "created_at", updatedAt: "updated_At" } })
+export default mongoose.model('Comment', commentSchema)

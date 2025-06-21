@@ -1,8 +1,7 @@
 import mongoose from 'mongoose'
- const usersSchema = new mongoose.Schema({
+ const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        default: 'Example',
         required: true,// an username must be entered.
         unique: true, //unique cannot be the same as other users info
     },
@@ -16,9 +15,8 @@ import mongoose from 'mongoose'
         required: true,
         minLength: 12, //has to be 12 characters long or won't be accepted
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
- })
- export default mongoose.model('client', usersSchema)
+
+ },{timestamps: {createdAt : "created_at", updatedAt: "updated_At"}})
+ userSchema.index({username: 1})
+ 
+ export default mongoose.model('Client', userSchema)
