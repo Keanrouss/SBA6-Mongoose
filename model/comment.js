@@ -4,6 +4,7 @@ const commentSchema = new mongoose.Schema({
     menuId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
+        ref: 'Dish'
     },
     comment: {
         type: String,
@@ -16,6 +17,6 @@ const commentSchema = new mongoose.Schema({
         minimum: 1,
         maximum: 5,
     },
-    userId: { type: mongoose.Schema.Types.ObjectId, required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Client' } 
 }, { timestamps: { createdAt: "created_at", updatedAt: "updated_At" } })
 export default mongoose.model('Comment', commentSchema)

@@ -7,18 +7,19 @@ commentRouter.post('/', async (req, res, next) => {
     try {
         const newComment = new Comment(req.body)
         const review = await newComment.save()
-        console.log(review)
-        res.send('Hello Clients!')
+    
+        res.status(201).json(review)
     } catch (error) {
         next(error)
     }
 })
 commentRouter.get('/', async (req, res, next)=>{
-    res.send('leave words!')
+   
     try {
-        const reviews = awwait 
+        const reviews = await Comment.find().populate({path:'menuId'}).populate({path:'userId', select: {username: 1,_id: 0}})
+        res.status(200).json(reviews)
     } catch (error) {
-        
+        next(error) //connect menuId
     }
 })
 export default commentRouter;
