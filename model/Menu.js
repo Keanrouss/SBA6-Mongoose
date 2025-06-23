@@ -7,6 +7,9 @@ const menuSchema = new mongoose.Schema({
    description: {
       ingredients: {
          type: String,
+      },
+      category:{
+         type: String,
       }
       // allergens : Boolean,
    },

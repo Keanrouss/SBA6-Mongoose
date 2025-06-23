@@ -12,7 +12,14 @@ try {
 } catch (error) {
     next(error)
 }
-
 })
+
+userRouter.get('/', async (req,res, next)=>{
+    res.json(await newUser.find())
+
+});
+
+
+
 
 export default userRouter;
