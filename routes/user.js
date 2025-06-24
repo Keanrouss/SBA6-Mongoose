@@ -18,6 +18,14 @@ userRouter.get('/', async (req,res, next)=>{
     res.json(await newUser.find())
 
 });
+userRouter.delete('/:id', async (req, res) => {
+  try {
+   const Client = await Client.findByIdAndDelete(req.params.id);
+   console.log(Client)
+    res.json('Client deleted Successfully!')
+  } catch (error) {
+  }
+});
 
 
 
