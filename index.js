@@ -23,7 +23,15 @@ app.use ('/api/comments', commentRouter)
 app.get('/', (req, res) => {
     res.send('Hello Mongoose')
 }),
-
+app.use((error, req, res, next) =>{
+    console.error('Express Error Middleware', error);
+    if (error) {
+        res.status(error.status).json({
+            message:error.message });
+    } else {
+       res.status(500).json ({message:'Internal Server Error',error:error.message||error}); 
+    }
+});
     app.listen(3000, () => {
         console.log(`Listening on port http://localhost:${3000}`);
     })
