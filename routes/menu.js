@@ -27,6 +27,11 @@ menuRouter.get ('/', async (req, res)=>{
     res.json(dishes)
 })
 
+// patch route
+menuRouter.patch ('/:id', async (req, res)=>{
+const updatedDish = await Dish.findByIdAndUpdate(req.params.id, req.body, {new:true});
+})
+
 })
 menuRouter.delete ('/:id', async (req, res)=>{
     try {
