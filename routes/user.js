@@ -1,20 +1,20 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import Client from '../model/user.js'
 const userRouter = Router()
 
 // create an user
-userRouter.post ('/', async (req, res, next)=>{
-try {
-    const newUser = new Client(req.body)
-    const visitor = await newUser.save()
-    console.log(visitor)
-    res.send('Hello Clients!')
-} catch (error) {
-    next(error)
-}
+userRouter.post('/', async (req, res, next) => {
+    try {
+        const newUser = new Client(req.body)
+        const visitor = await newUser.save()
+        console.log(visitor)
+        res.send('Hello Clients!')
+    } catch (error) {
+        next(error)
+    }
 })
 //to get all of users
-userRouter.get('/', async (req,res, next)=>{
+userRouter.get('/', async (req, res, next) => {
     res.json(await newUser.find())
 
 });
@@ -24,12 +24,12 @@ userRouter.patch('/:id', async (req, res) => {
 });
 
 userRouter.delete('/:id', async (req, res) => {
-  try {
-   const Client = await Client.findByIdAndDelete(req.params.id);
-   console.log(Client)
-    res.json('Client deleted Successfully!')
-  } catch (error) {
-  }
+    try {
+        const Client = await Client.findByIdAndDelete(req.params.id);
+        console.log(Client)
+        res.json('Client deleted Successfully!')
+    } catch (error) {
+    }
 });
 
 
