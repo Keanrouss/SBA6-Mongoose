@@ -12,6 +12,15 @@ try {
 } catch (error) {
     next(error)
 }
+//to create a dish where users can add on the menu
+menuRouter.post('/', async(req, res)=>{
+    try {
+        const newDish = await Dish.create(req.body);
+        res.status(201).json (newDish)
+    } catch (error) {
+        res.status(404).json('New dish added Successfully!')
+    }
+})
 //To get all food info
 menuRouter.get ('/', async (req, res)=>{
     const dishes = await Dish.find().populate('category').populate('addedBy');
