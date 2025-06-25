@@ -5,9 +5,8 @@ const userRouter = Router()
 // create an user
 userRouter.post('/', async (req, res, next) => {
     try {
-        const newUser = new Client(req.body)
-        const visitor = await newUser.save()
-        console.log(visitor)
+        const user = await newUser.create(req.body)
+        console.log(user)
         res.send('Hello Clients!')
     } catch (error) {
         next(error)
@@ -15,7 +14,7 @@ userRouter.post('/', async (req, res, next) => {
 })
 //to get all of users
 userRouter.get('/', async (req, res, next) => {
-    res.json(await newUser.find())
+    res.json(await Client.find())
 
 });
 //patch so users can update info

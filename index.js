@@ -7,6 +7,7 @@ import comment from "./model/comment.js"
 import userRoutes from "./routes/user.js"
 import menuRouter from "./routes/menu.js"
 import commentRouter from "./routes/comment.js"
+import userRouter from "./routes/user.js"
 
 const app = express()
 const PORT = process.env.PORT
@@ -17,7 +18,7 @@ mongoose.connect(process.env.MONGO_URL) //added after adding the env isolation m
 console.log("connected")
 //middleware to read JSON
 app.use(express.json());
-app.use('/api/users', userRoutes)
+app.use('/api/users', userRouter)
 app.use ('/api/menus', menuRouter)
 app.use ('/api/comments', commentRouter)
 app.get('/', (req, res) => {
