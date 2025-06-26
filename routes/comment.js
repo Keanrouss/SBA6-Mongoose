@@ -3,19 +3,19 @@ import Comment from '../model/comment.js'
 const commentRouter = Router()
 
 //to get all of comments
-commentRouter.get('/', async (req, res, next)=>{
-   
-    try {
-        const reviews = await Comment.find().populate({path:'menuId'}).populate({path:'userId', select: {username: 1,_id: 0}})
-        res.status(200).json(reviews)
-    } catch (error) {
-        next(error) //connect menuId
-    }
+commentRouter.get('/', async (req, res, next) => {
+   try {
+    res.json(await Comment.find())
+   } catch (error) {
+    error.status = 404
+    next(error)
+   }
 })//to post a comment
 commentRouter.post('/', async (req, res) => {
         try {
             const Comment = await Comment.create(req.body);
             res.status(201).json(Comment)
+            console.log(Comment)
         } catch (error) {
             res.status(400).json('Please Try again!')
         }

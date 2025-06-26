@@ -15,12 +15,23 @@ userRouter.post('/', async (req, res, next) => {
 })
 //to get all of users
 userRouter.get('/', async (req, res, next) => {
+   try {
     res.json(await Client.find())
+   } catch (error) {
+    error.status = 404
+    next(error)
+   }
+    
 
 });
 //patch so users can update info
 userRouter.patch('/:id', async (req, res) => {
+    try{
     res.json(await Client.findByIdAndUpdate(req.params.id, req.body))
+    }catch(error){
+        error.status = 404
+
+    }
 });
 
 userRouter.delete('/:id', async (req, res) => {

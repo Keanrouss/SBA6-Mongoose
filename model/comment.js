@@ -1,22 +1,25 @@
 import mongoose from 'mongoose'
+
 const commentSchema = new mongoose.Schema({
 
-    menuId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Dish'
+    name: {
+        type: String,
+        required: true
     },
     comment: {
         type: String,
-        required: true,
-        minLength: 10,
+        required: true
     },
-    rating: {
-        type: Number,
-        required: true,
-        minimum: 1,
-        maximum: 5,
+    username: {
+        type: String,
+        required: true
     },
-    userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Client' } 
-}, { timestamps: { createdAt: "created_at", updatedAt: "updated_At" } })
+    
+    
+
+
+
+
+    
+},{ timestamps: { createdAt: "created_at", updatedAt: "updated_At" } })
 export default mongoose.model('Comment', commentSchema)
