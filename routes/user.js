@@ -5,10 +5,11 @@ const userRouter = Router()
 // create an user
 userRouter.post('/', async (req, res, next) => {
     try {
-        const user = await newUser.create(req.body)
+        const user = await Client.create(req.body)
         console.log(user)
-        res.send('Hello Clients!')
+        res.status(200).json(user)
     } catch (error) {
+        error.status = 400
         next(error)
     }
 })
@@ -24,8 +25,11 @@ userRouter.patch('/:id', async (req, res) => {
 
 userRouter.delete('/:id', async (req, res) => {
     try {
-        const Client = await Client.findByIdAndDelete(req.params.id);
-        console.log(Client)
+        const result = await Client.deleteOne({_id: req.params.id});
+        if (result.deletedCount === 0) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+        console.log(req.params.id)
         res.json('Client deleted Successfully!')
     } catch (error) {
     }

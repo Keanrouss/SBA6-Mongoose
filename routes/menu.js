@@ -14,9 +14,8 @@ const menuRouter = Router()
         }
     })
     //To get all food info
-    menuRouter.get('/', async (req, res) => {
-        const dishes = await Dish.find().populate('category').populate('addedBy');
-        res.json(dishes)
+    menuRouter.get('/', async (req, res, next) => {
+        res.json(await Dish.find())
     })
 
     // patch route
