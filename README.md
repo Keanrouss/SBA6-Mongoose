@@ -56,3 +56,12 @@ Example of a comment
     "updated_At": "2025-06-26T01:15:34.412Z",
     "__v": 0
   },
+
+
+  ERROR
+  TRY/CATCH method used to catch errors 
+  Code status (400,200,500) to display proper output or error outputs
+
+  TESTED
+  with thunderClient.
+Can be checked using Postman
